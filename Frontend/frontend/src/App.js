@@ -85,19 +85,28 @@ const App = () => {
     if (item.id) {
       axios
         .put(`http://localhost:8000/api/tasks/${item.id}/`, item)
-        .then(() => refreshList());
+        .then(() => refreshList())
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
       return;
     }
     axios
       .post("http://localhost:8000/api/tasks/", item)
-      .then(() => refreshList());
+      .then(() => refreshList())
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const handleDelete = item => {
-    console.log(item.id)
     axios
       .delete(`http://localhost:8000/api/tasks/${item.id}/`)
-      .then(() => refreshList());
+      .then(() => refreshList())
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const createItem = () => {
